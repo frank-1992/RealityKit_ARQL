@@ -14,5 +14,6 @@ Functions:
 6. take photos and videos
 
 Email: jswy1992@163.com
+QQ: 877479310
 
 
