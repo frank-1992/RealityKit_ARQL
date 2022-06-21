@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     @objc
     private func showARController() {
         let arSceneVC = RealityViewController()
-//        arSceneVC.modalPresentationStyle = .fullScreen
+        arSceneVC.modalPresentationStyle = .fullScreen
         self.present(arSceneVC, animated: true)
     }
 

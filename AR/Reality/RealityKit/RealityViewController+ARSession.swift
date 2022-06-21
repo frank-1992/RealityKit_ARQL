@@ -14,7 +14,6 @@ import RealityKit
 @available(iOS 13.0, *)
 extension RealityViewController: ARSessionDelegate {
     public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-        guard let arView = arView else { return }
         for anchor in anchors {
             let location = arView.center
             guard isPlacedOnPlane == false,
@@ -43,8 +42,6 @@ extension RealityViewController: ARSessionDelegate {
     }
     
     public func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-        guard let arView = arView else { return }
-
         for anchor in anchors {
             let location = arView.center
             guard isPlacedOnPlane == false,
@@ -73,7 +70,7 @@ extension RealityViewController: ARSessionDelegate {
     }
     
     public func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        guard let usdzEntity = usdzEntity, let arView = arView else { return }
+        guard let usdzEntity = usdzEntity else { return }
         let camera = frame.camera
         let transform = camera.transform
         if let rayCast = arView.scene.raycast(from: transform.translation, to: usdzEntity.transform.translation, query: .nearest, mask: .default, relativeTo: nil).first {

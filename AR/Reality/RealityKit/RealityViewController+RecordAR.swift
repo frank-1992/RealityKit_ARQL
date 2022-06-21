@@ -9,6 +9,7 @@ import UIKit
 import ARKit
 import SceneKit
 import Photos
+import SCNRecorder
 
 @available(iOS 13.0, *)
 public extension RealityViewController {

@@ -6,6 +6,7 @@
 import Foundation
 import RealityKit
 import Combine
+import SCNRecorder
 
 private var cancellableKey: UInt8 = 0
 

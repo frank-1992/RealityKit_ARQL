@@ -34,7 +34,6 @@ extension RealityViewController: ARCoachingOverlayViewDelegate {
     }
 
     func setupCoachingOverlay() {
-        guard let arView = arView else { return }
         coachingOverlay.session = arView.session
         coachingOverlay.delegate = self
 

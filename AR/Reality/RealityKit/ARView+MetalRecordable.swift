@@ -5,6 +5,7 @@
 
 import Foundation
 import RealityKit
+import SCNRecorder
 
 private var sceneRecorderKey: UInt8 = 0
 private var cancellableKey: UInt8 = 0
