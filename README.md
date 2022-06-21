@@ -1,6 +1,7 @@
 # realitykit_arql
 
 Use realityKit to realize the function of ARQuickLook
+Tip: gif loading is slow, please be patient
 
 ![](https://github.com/frank-1992/realitykit_arql/blob/master/IMG_6970.GIF)
 ![](https://github.com/frank-1992/realitykit_arql/blob/master/IMG_6971.GIF)
