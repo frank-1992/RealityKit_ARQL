@@ -1,0 +1,28 @@
+PODS:
+  - lottie-ios (3.2.3)
+  - MTDMulticastDelegate (1.0.1)
+  - SCNRecorder (2.7.0):
+    - MTDMulticastDelegate
+  - SnapKit (5.6.0)
+
+DEPENDENCIES:
+  - lottie-ios
+  - SCNRecorder
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - lottie-ios
+    - MTDMulticastDelegate
+    - SCNRecorder
+    - SnapKit
+
+SPEC CHECKSUMS:
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  MTDMulticastDelegate: dcedff914c281710e3faa64b79ff775741f25b4b
+  SCNRecorder: f1891098c0ea72fe166a1c10fc2e5a4e3dd8c9a5
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+
+PODFILE CHECKSUM: 0b7186378d7e54248e3fc135eec7862944885f06
+
+COCOAPODS: 1.11.3
