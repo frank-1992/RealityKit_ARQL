@@ -2,8 +2,8 @@
 
 Use realityKit to realize the function of ARQuickLook
 
-![image](https://github.com/frank-1992/realitykit_arql/blob/master/IMG_6970.GIF)
-![image](https://github.com/frank-1992/realitykit_arql/blob/master/IMG_6971.GIF)
+![](https://github.com/frank-1992/realitykit_arql/blob/master/IMG_6970.GIF)
+![](https://github.com/frank-1992/realitykit_arql/blob/master/IMG_6971.GIF)
 
 Functions:
 1. detect plane then place the model on the plane
