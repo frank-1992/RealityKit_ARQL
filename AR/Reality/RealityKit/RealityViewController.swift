@@ -91,6 +91,8 @@ public final class RealityViewController: UIViewController {
     private var recentUSDZEntityPositions: [SIMD3<Float>] = []
     
     private var canMove: Bool = false
+    private var canFloat: Bool = false
+    var currentUSDZPosition: SIMD3<Float>?
     
     private lazy var loadingView: ARLoadingView = {
         let view = ARLoadingView(frame: view.bounds)
@@ -393,6 +395,7 @@ public final class RealityViewController: UIViewController {
         let factor = distance / scale
         if factor < 20 {
             usdzEntity.position = average
+            currentUSDZPosition = average
         }
     }
 }
