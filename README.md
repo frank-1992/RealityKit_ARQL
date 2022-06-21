@@ -13,4 +13,6 @@ Functions:
 4. add pan, scale, rotate gestures, you can use them control the model
 6. take photos and videos
 
+Email: jswy1992@163.com
+
 
