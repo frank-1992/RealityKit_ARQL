@@ -68,6 +68,9 @@ public class USDZEntity: Entity, HasAnchoring, HasCollision {
                 // set entity's position
                 let depth = currentBoundingBoxMax.z - currentBoundingBoxMin.z
                 entity?.position = SIMD3(x: initPosition.x, y: initPosition.y, z: depth / 2.0)
+            case .usdzFloating:
+                horizontalPlaneEntity?.isEnabled = false
+                horizontalShadowLight.isEnabled = false
             default:
                 break
             }
@@ -124,10 +127,11 @@ public class USDZEntity: Entity, HasAnchoring, HasCollision {
         let boundingBox = self.visualBounds(relativeTo: self)
         let width = boundingBox.max.x - boundingBox.min.x
         let depth = boundingBox.max.z - boundingBox.min.z
-        let edge = sqrt(width * width + depth * depth)
+        let maxValue = USDZEntity.maxOne([width, depth])
+        let edge = sqrt(maxValue * maxValue * 2)
         
         // add shadow plane to usdzEntity
-        let plane = MeshResource.generatePlane(width: edge, depth: edge, cornerRadius: edge / 2.0)
+        let plane = MeshResource.generatePlane(width: edge, depth: edge)
         let material = OcclusionMaterial(receivesDynamicLighting: true)
         let planeEntity = ModelEntity(mesh: plane, materials: [material])
         planeEntity.position = SIMD3(x: 0, y: 0, z: 0)
@@ -166,3 +170,14 @@ public class USDZEntity: Entity, HasAnchoring, HasCollision {
         entity.setOrientation(currentOrientation, relativeTo: self)
     }
 }
+
+extension USDZEntity {
+    static func maxOne<T: Comparable>( _ seq: [T]) -> T {
+        assert(!seq.isEmpty)
+        return seq.reduce(seq[0]) {
+            max($0, $1)
+        }
+    }
+}
+
+

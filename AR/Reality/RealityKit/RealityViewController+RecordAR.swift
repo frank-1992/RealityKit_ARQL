@@ -123,7 +123,6 @@ extension RealityViewController: CameraButtonViewDelegate {
 
     private func previewResult(with resource: ARResultMediaType) {
         let controller = ARResultController(mediaType: resource)
-//        controller.model = self.model
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
     }

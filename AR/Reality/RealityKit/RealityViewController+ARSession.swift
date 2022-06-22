@@ -21,6 +21,7 @@ extension RealityViewController: ARSessionDelegate {
                   let usdzEntity = usdzEntity else { return }
             if let rayCast = arView.raycast(from: location, allowing: .estimatedPlane, alignment: .any).first, let plane = rayCast.anchor as? ARPlaneAnchor {
                 usdzEntity.position = rayCast.worldTransform.translation
+                currentUSDZPosition = rayCast.worldTransform.translation
                 arView.scene.addAnchor(usdzEntity)
                 usdzEntity.startAnimation()
                 isPlacedOnPlane = true
@@ -49,6 +50,7 @@ extension RealityViewController: ARSessionDelegate {
                   let usdzEntity = usdzEntity else { return }
             if let rayCast = arView.raycast(from: location, allowing: .estimatedPlane, alignment: .any).first, let plane = rayCast.anchor as? ARPlaneAnchor {
                 usdzEntity.position = rayCast.worldTransform.translation
+                currentUSDZPosition = rayCast.worldTransform.translation
                 arView.scene.addAnchor(usdzEntity)
                 usdzEntity.startAnimation()
                 isPlacedOnPlane = true

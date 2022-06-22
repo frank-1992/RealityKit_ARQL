@@ -17,8 +17,6 @@ enum ARResultMediaType {
 
 final class ARResultController: UIViewController {
 
-    public var model: AR3DModel?
-
     public var mediaType: ARResultMediaType = .none
 
     init(mediaType: ARResultMediaType) {
@@ -59,7 +57,7 @@ final class ARResultController: UIViewController {
         let publishButton = UIButton()
         publishButton.backgroundColor = .red
         publishButton.layer.cornerRadius = 24
-        publishButton.setTitle("一键发布笔记", for: .normal)
+        publishButton.setTitle("Save", for: .normal)
         publishButton.layer.zPosition = 1000
         publishButton.translatesAutoresizingMaskIntoConstraints = false
         publishButton.addTarget(self, action: #selector(publishButtonClicked), for: .touchUpInside)
@@ -89,9 +87,7 @@ final class ARResultController: UIViewController {
         case .none:
             break
         }
-
         initSubviews()
-
     }
 
     private func playBackIfNeeded() {
@@ -162,8 +158,6 @@ final class ARResultController: UIViewController {
         if !hasSaved {
             saveMediaToAlbum()
         }
-        
-        
     }
     
     private func saveMediaToAlbum() {
@@ -229,7 +223,7 @@ final class ARResultController: UIViewController {
         }
         let videoPlayer = AVQueuePlayer(playerItem: playerItem)
         videoPlayer.actionAtItemEnd = .none
-        videoPlayer.rate = 1.0 // 播放速度 播放前设置
+        videoPlayer.rate = 1.0
         self.player = videoPlayer
 
         playerLooper = AVPlayerLooper(player: videoPlayer, templateItem: playerItem)
@@ -250,13 +244,7 @@ final class ARResultController: UIViewController {
     }
     
     func showTipsAlert() {
-//        let alertItem: XYAlertItem = XYAlert.createAlertItem(withMessage: "返回后拍摄内容将不会保留", cancelTitle: "取消", confirmTitle: "确认") { result in
-//            print("操作啊啊啊: \(result)")
-//            if result {
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//        }
-//        alertItem.show()
+
     }
 
 }
