@@ -12,6 +12,7 @@ Functions:
 3. add light and horizontal shadow(vertical has some problems right now)
 4. add pan, scale, rotate gestures, you can use them control the model
 6. take photos and videos
+7. two fingers move up can float the model
 
 Email: jswy1992@163.com
 
