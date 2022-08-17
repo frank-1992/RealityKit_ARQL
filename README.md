@@ -14,6 +14,8 @@ Functions:
 6. take photos and videos
 7. two fingers move up can float the model
 
+Download this project and run 'Pod install', then you can enjoy it
+
 Email: jswy1992@163.com
 
 QQ: 877479310
