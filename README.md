@@ -18,6 +18,4 @@ Download this project and run 'Pod install', then you can enjoy it
 
 Email: jswy1992@163.com
 
-QQ: 877479310
-
 
