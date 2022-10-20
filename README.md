@@ -1,4 +1,4 @@
-# Realitykit_ARQL
+# RealityKit_ARQL
 
 Use realityKit to realize the function of ARQuickLook
 
