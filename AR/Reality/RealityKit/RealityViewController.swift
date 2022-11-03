@@ -92,9 +92,6 @@ public final class RealityViewController: UIViewController {
     private var recentUSDZEntityPositions: [SIMD3<Float>] = []
     
     private var canMove: Bool = false
-    private var canFloat: Bool = false
-    var isFloating: Bool = false
-    var currentUSDZPosition: SIMD3<Float>?
     
     private lazy var loadingView: ARLoadingView = {
         let view = ARLoadingView(frame: view.bounds)
@@ -187,6 +184,12 @@ public final class RealityViewController: UIViewController {
             }
             // add system scale gesture
             self.usdzEntity = usdzEntity
+            
+            let rkPin = EntityPointPin(size: CGSize(width: 36, height: 36), pinTexture: UIImage(named: "guidance"))
+            self.arView.addSubview(rkPin)
+            rkPin.focusPercentage = 1
+            rkPin.edge = 10
+            rkPin.targetEntity = usdzEntity
         }
     }
     
