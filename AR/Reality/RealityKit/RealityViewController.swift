@@ -27,9 +27,9 @@ public enum CameraMode: CaseIterable {
     var title: String {
         switch self {
         case .picture:
-            return "拍照"
+            return "Photo"
         case .video:
-            return "拍视频"
+            return "Video"
         }
     }
 }
@@ -180,10 +180,12 @@ public final class RealityViewController: UIViewController {
     private func loadUSDZFile(with url: URL) {
         LoadUSDZ.shared.loadObjectFromFilePath(url) { [weak self] usdzEntity in
             guard let self = self else { return }
-            self.isDownloading = false
             self.loadingView.animationHidden = true
-            self.planDetectionView.animationHidden = false
-            
+            self.isDownloading = false
+            if !self.isPlacedOnPlane {
+                self.planDetectionView.animationHidden = false
+            }
+            // add system scale gesture
             self.usdzEntity = usdzEntity
         }
     }
@@ -219,23 +221,12 @@ public final class RealityViewController: UIViewController {
     private func setupARView() {
         let statusHeight = UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         
-        let arView = ARView(frame: view.bounds)
-        arView.session.delegate = self
-        arView.renderOptions = [
-            .disableGroundingShadows,
-            .disableMotionBlur,
-            .disableDepthOfField,
-            .disableHDR,
-            .disableCameraGrain]
-        arView.environment.lighting.intensityExponent = 1.5
         // add ar display view
         view.addSubview(arView)
-        self.arView = arView
-        setupCoachingOverlay()
         // guide view
         arView.addSubview(loadingView)
         arView.addSubview(planDetectionView)
-        
+                
         view.addSubview(backButton)
         backButton.snp.makeConstraints { make in
             make.leading.equalTo(10)
@@ -301,135 +292,78 @@ public final class RealityViewController: UIViewController {
     // move model to every plane
     @objc
     func didPan(_ gesture: UIPanGestureRecognizer) {
-        guard let usdzEntity = usdzEntity else {
+        guard let usdzEntity = usdzEntity, gesture.numberOfTouches == 1 else {
             lastPanTouchPosition = nil
             return
         }
-        if gesture.numberOfTouches == 1 {
-            switch gesture.state {
-            case .began:
-                let location = gesture.location(in: arView)
-                if arView.entity(at: location) == nil {
+        switch gesture.state {
+        case .began:
+            let location = gesture.location(in: arView)
+            if let touchEntite = arView.entity(at: location) {
+                if touchEntite.name == "usdzPlane" {
                     canMove = false
                 } else {
                     canMove = true
                 }
-            case .changed:
-                guard isPlacedOnPlane, canMove else { return }
-                let translation = gesture.translation(in: arView)
-                let previousPosition = lastPanTouchPosition ?? arView.project(usdzEntity.position)
-                guard let previousPositionX = previousPosition?.x,
-                      let previousPositionY = previousPosition?.y else { return }
-                let currentPosition = CGPoint(x: previousPositionX + translation.x, y: previousPositionY + translation.y)
-                
-                if isFloating {
-                    guard let previousHorizontalPlane = previousHorizontalPlane else {
-                        return
-                    }
-                    let col0 = previousHorizontalPlane.transform.columns.0
-                    let col1 = previousHorizontalPlane.transform.columns.1
-                    let col2 = previousHorizontalPlane.transform.columns.2
-                    var col3 = previousHorizontalPlane.transform.columns.3
-                    col3.y = usdzEntity.position.y
-                    let floatPlaneAnchor = simd_float4x4(col0, col1, col2, col3)
-                    if let position = arView.unproject(currentPosition, ontoPlane: floatPlaneAnchor) {
-                        usdzEntity.position.x = position.x
-                        usdzEntity.position.z = position.z
-                    }
-                } else {
-                    if let hitTest = arView.hitTest(currentPosition, types: [.existingPlaneUsingGeometry]).first,
-                       let planeAnchor = hitTest.anchor as? ARPlaneAnchor {
-                        
-                        if previousPlane?.identifier != planeAnchor.identifier {
-                            addSoundShort()
-                        }
-                        previousPlane = planeAnchor
-                        switch planeAnchor.alignment {
-                        case .horizontal:
-                            previousHorizontalPlane = planeAnchor
-                            currentAlignment = .usdzHorizontal
-                            // remove vertical plane
-                            verticalPlaneEntity?.removeFromParent()
-                            verticalPlaneEntity = nil
-                            // when previous alignment is vertical, reset orientation
-                            if previousAlignment == .usdzVertical {
-                                usdzEntity.resetEntityOirentation()
-                            }
-                            recentUSDZEntityPositions.append(hitTest.worldTransform.translation)
-                            updatePosition()
-                            previousAlignment = .usdzHorizontal
-                        case .vertical:
-                            previousVerticalPlane = planeAnchor
-                            currentAlignment = .usdzVertical
-                            let translation = hitTest.worldTransform.translation
-                            recentUSDZEntityPositions.append(translation)
-                            updatePosition()
-                            usdzEntity.orientation = hitTest.worldTransform.orientation
-                            usdzEntity.setOrientation(simd_quatf(angle: -.pi / 2, axis: SIMD3(x: 1, y: 0, z: 0)), relativeTo: usdzEntity)
-                            previousAlignment = .usdzVertical
-                        default:
-                            break
-                        }
-                    } else {
-                        if let planeAnchor = previousHorizontalPlane,
-                           let position = arView.unproject(currentPosition, ontoPlane: planeAnchor.transform) {
-                            verticalPlaneEntity?.removeFromParent()
-                            verticalPlaneEntity = nil
-                            
-                            recentUSDZEntityPositions.append(position)
-                            updatePosition()
-                            currentAlignment = .usdzHorizontal
-                        }
-                    }
-                }
-                lastPanTouchPosition = currentPosition
-                gesture.setTranslation(.zero, in: arView)
-            default:
-                lastPanTouchPosition = nil
+            } else {
                 canMove = false
-                break
             }
-        } else if gesture.numberOfTouches == 2 {
-            // float the model
-            switch gesture.state {
-            case .began:
-                let firstLocation = gesture.location(ofTouch: 0, in: arView)
-                let secondLocation = gesture.location(ofTouch: 1, in: arView)
-                if arView.entity(at: firstLocation) == nil && arView.entity(at: secondLocation) == nil  {
-                    canFloat = false
-                } else {
-                    canFloat = true
+        case .changed:
+            guard isPlacedOnPlane, canMove else { return }
+            let translation = gesture.translation(in: arView)
+            let previousPosition = lastPanTouchPosition ?? arView.project(usdzEntity.position)
+            guard let previousPositionX = previousPosition?.x,
+                  let previousPositionY = previousPosition?.y else { return }
+            let currentPosition = CGPoint(x: previousPositionX + translation.x, y: previousPositionY + translation.y)
+            if let hitTest = arView.hitTest(currentPosition, types: [.existingPlaneUsingGeometry]).first,
+               let planeAnchor = hitTest.anchor as? ARPlaneAnchor {
+                if previousPlane?.identifier != planeAnchor.identifier {
+                    addSoundShort()
                 }
-            case .changed:
-                guard let currentUSDZPosition = currentUSDZPosition, isPlacedOnPlane, canFloat else { return }
-                let translation = gesture.translation(in: arView)
-                let y = -Float(translation.y/2000)
-
-                if !isFloating {
-                    if y > 0 {
-                        usdzEntity.position.y += y
-                        isFloating = true
-                        currentAlignment = .usdzFloating
+                previousPlane = planeAnchor
+                switch planeAnchor.alignment {
+                case .horizontal:
+                    previousHorizontalPlane = planeAnchor
+                    currentAlignment = .usdzHorizontal
+                    // remove vertical plane
+                    verticalPlaneEntity?.removeFromParent()
+                    verticalPlaneEntity = nil
+                    // when previous alignment is vertical, reset orientation
+                    if previousAlignment == .usdzVertical {
+                        usdzEntity.resetEntityOirentation()
                     }
-                } else {
-                    let newY = usdzEntity.position.y + y
-                    if newY < currentUSDZPosition.y && isFloating {
-                        usdzEntity.position.y = currentUSDZPosition.y
-                        self.currentUSDZPosition = SIMD3(x: usdzEntity.position.x, y: currentUSDZPosition.y, z: usdzEntity.position.z)
-                        addSoundShort()
-                        isFloating = false
-                        currentAlignment = .usdzHorizontal
-                    } else {
-                        usdzEntity.position.y += y
-                        isFloating = true
-                        currentAlignment = .usdzFloating
-                    }
+                    recentUSDZEntityPositions.append(hitTest.worldTransform.translation)
+                    updatePosition()
+                    previousAlignment = .usdzHorizontal
+                case .vertical:
+                    previousVerticalPlane = planeAnchor
+                    currentAlignment = .usdzVertical
+                    let translation = hitTest.worldTransform.translation
+                    recentUSDZEntityPositions.append(translation)
+                    updatePosition()
+                    usdzEntity.orientation = hitTest.worldTransform.orientation
+                    usdzEntity.setOrientation(simd_quatf(angle: -.pi / 2, axis: SIMD3(x: 1, y: 0, z: 0)), relativeTo: usdzEntity)
+                    previousAlignment = .usdzVertical
+                default:
+                    break
                 }
-                canMove = false
-                gesture.setTranslation(.zero, in: arView)
-            default:
-                break
+            } else {
+                if let planeAnchor = previousHorizontalPlane,
+                   let position = arView.unproject(currentPosition, ontoPlane: planeAnchor.transform) {
+                    verticalPlaneEntity?.removeFromParent()
+                    verticalPlaneEntity = nil
+                    
+                    recentUSDZEntityPositions.append(position)
+                    updatePosition()
+                    currentAlignment = .usdzHorizontal
+                }
             }
+            lastPanTouchPosition = currentPosition
+            gesture.setTranslation(.zero, in: arView)
+        case .ended:
+            lastPanTouchPosition = nil
+        default:
+            break
         }
     }
     
@@ -453,7 +387,6 @@ public final class RealityViewController: UIViewController {
         let factor = distance / scale
         if factor < 20 {
             usdzEntity.position = average
-            currentUSDZPosition = average
         }
     }
 }

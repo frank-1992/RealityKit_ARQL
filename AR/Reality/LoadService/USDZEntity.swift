@@ -68,9 +68,6 @@ public class USDZEntity: Entity, HasAnchoring, HasCollision {
                 // set entity's position
                 let depth = currentBoundingBoxMax.z - currentBoundingBoxMin.z
                 entity?.position = SIMD3(x: initPosition.x, y: initPosition.y, z: depth / 2.0)
-            case .usdzFloating:
-                horizontalPlaneEntity?.isEnabled = false
-                horizontalShadowLight.isEnabled = false
             default:
                 break
             }
@@ -80,6 +77,7 @@ public class USDZEntity: Entity, HasAnchoring, HasCollision {
     required init(entity: Entity) {
         super.init()
         self.name = "usdzModel"
+        // set init scale
         let boundingBox = entity.visualBounds(relativeTo: entity)
         
         let originHeight = boundingBox.max.y - boundingBox.min.y
@@ -127,14 +125,14 @@ public class USDZEntity: Entity, HasAnchoring, HasCollision {
         let boundingBox = self.visualBounds(relativeTo: self)
         let width = boundingBox.max.x - boundingBox.min.x
         let depth = boundingBox.max.z - boundingBox.min.z
-        let maxValue = USDZEntity.maxOne([width, depth])
-        let edge = sqrt(maxValue * maxValue * 2)
+        let edge = sqrt(width * width + depth * depth)
         
         // add shadow plane to usdzEntity
-        let plane = MeshResource.generatePlane(width: edge, depth: edge)
+        let plane = MeshResource.generatePlane(width: edge * 2, depth: edge * 2, cornerRadius: edge)
         let material = OcclusionMaterial(receivesDynamicLighting: true)
         let planeEntity = ModelEntity(mesh: plane, materials: [material])
         planeEntity.position = SIMD3(x: 0, y: 0, z: 0)
+        planeEntity.name = "usdzPlane"
         addChild(planeEntity)
         planeEntity.isEnabled = false
         horizontalPlaneEntity = planeEntity
@@ -147,7 +145,7 @@ public class USDZEntity: Entity, HasAnchoring, HasCollision {
     }
     
     // when previous alignment is vertical and current alignment is horizontal ,
-    //we should reset entity's Orientation
+    // we should reset entity's Orientation
     func resetEntityOirentation() {
         guard let entity = entity,
               let orientation = initOrientation else {
@@ -170,14 +168,3 @@ public class USDZEntity: Entity, HasAnchoring, HasCollision {
         entity.setOrientation(currentOrientation, relativeTo: self)
     }
 }
-
-extension USDZEntity {
-    static func maxOne<T: Comparable>( _ seq: [T]) -> T {
-        assert(!seq.isEmpty)
-        return seq.reduce(seq[0]) {
-            max($0, $1)
-        }
-    }
-}
-
-

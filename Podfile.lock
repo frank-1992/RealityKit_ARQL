@@ -1,28 +1,37 @@
 PODS:
-  - lottie-ios (3.2.3)
+  - lottie-ios (3.5.0)
   - MTDMulticastDelegate (1.0.1)
-  - SCNRecorder (2.7.0):
+  - SCNRecorder (2.8.1):
     - MTDMulticastDelegate
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - lottie-ios
-  - SCNRecorder
+  - SCNRecorder (from `https://github.com/gorastudio-ceo/SCNRecorder.git`, tag `2.8.1`)
   - SnapKit
 
 SPEC REPOS:
   trunk:
     - lottie-ios
     - MTDMulticastDelegate
-    - SCNRecorder
     - SnapKit
 
+EXTERNAL SOURCES:
+  SCNRecorder:
+    :git: https://github.com/gorastudio-ceo/SCNRecorder.git
+    :tag: 2.8.1
+
+CHECKOUT OPTIONS:
+  SCNRecorder:
+    :git: https://github.com/gorastudio-ceo/SCNRecorder.git
+    :tag: 2.8.1
+
 SPEC CHECKSUMS:
-  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  lottie-ios: c55158d67d0629a260625cc2ded2052b829e3c3e
   MTDMulticastDelegate: dcedff914c281710e3faa64b79ff775741f25b4b
-  SCNRecorder: f1891098c0ea72fe166a1c10fc2e5a4e3dd8c9a5
+  SCNRecorder: dd694ba1c5cd541a58f0794a45d70262109c7024
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 0b7186378d7e54248e3fc135eec7862944885f06
+PODFILE CHECKSUM: 93ad98c91c44c33f463a3eeb90ccb6680087255c
 
 COCOAPODS: 1.11.3

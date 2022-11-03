@@ -2,7 +2,7 @@
 //  VirtualObject.swift
 //  ARView
 //
-//  Created by user on 5/17/22.
+//  Created by 吴熠 on 5/17/22.
 //
 
 import UIKit
@@ -18,7 +18,7 @@ class LoadUSDZ: NSObject {
     
     // download model from local url
     public func loadObjectFromFilePath(_ url: URL, completion: @escaping (_ usdzEntity: USDZEntity) -> Void) {
-        var cancellable: AnyCancellable? = nil
+        var cancellable: AnyCancellable?
         
         cancellable = Entity.loadAsync(contentsOf: url)
             .sink(receiveCompletion: { error in

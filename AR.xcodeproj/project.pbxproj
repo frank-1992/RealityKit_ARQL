@@ -15,9 +15,6 @@
 		CE07AC9A2848767F00B08D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE07AC992848767F00B08D71 /* Assets.xcassets */; };
 		CE07AC9D2848767F00B08D71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE07AC9B2848767F00B08D71 /* LaunchScreen.storyboard */; };
 		CE07ACC4284877B700B08D71 /* ARUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACA5284877B600B08D71 /* ARUtilities.swift */; };
-		CE07ACC5284877B700B08D71 /* USDZEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACA7284877B600B08D71 /* USDZEntity.swift */; };
-		CE07ACC7284877B700B08D71 /* LoadUSDZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACA9284877B600B08D71 /* LoadUSDZ.swift */; };
-		CE07ACC8284877B700B08D71 /* AR3DModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACAA284877B600B08D71 /* AR3DModel.swift */; };
 		CE07ACCA284877B700B08D71 /* ARLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACAD284877B600B08D71 /* ARLoadingView.swift */; };
 		CE07ACCB284877B700B08D71 /* PlanDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACAE284877B600B08D71 /* PlanDetectionView.swift */; };
 		CE07ACCC284877B700B08D71 /* CameraButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACAF284877B600B08D71 /* CameraButtonView.swift */; };
@@ -28,12 +25,13 @@
 		CE07ACD1284877B700B08D71 /* RealityViewController+ARSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACB5284877B600B08D71 /* RealityViewController+ARSession.swift */; };
 		CE07ACD2284877B700B08D71 /* ARView+MetalRecordable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACB6284877B600B08D71 /* ARView+MetalRecordable.swift */; };
 		CE07ACD3284877B700B08D71 /* RealityViewController+RecordAR.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACB7284877B600B08D71 /* RealityViewController+RecordAR.swift */; };
-		CE07ACD4284877B700B08D71 /* ARCoachingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACB9284877B600B08D71 /* ARCoachingOverlay.swift */; };
 		CE07ACD5284877B700B08D71 /* ARResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07ACBB284877B600B08D71 /* ARResultController.swift */; };
 		CE07ACE02848791400B08D71 /* find_plane.json in Resources */ = {isa = PBXBuildFile; fileRef = CE07ACDD2848791400B08D71 /* find_plane.json */; };
 		CE07ACE12848791400B08D71 /* rotate.json in Resources */ = {isa = PBXBuildFile; fileRef = CE07ACDE2848791400B08D71 /* rotate.json */; };
 		CE07ACE22848791400B08D71 /* ar_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE07ACDF2848791400B08D71 /* ar_loading.json */; };
 		CE07ACE428487A7E00B08D71 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CE07ACE328487A7E00B08D71 /* Models.scnassets */; };
+		CE37725B2913B99400CF9E8B /* USDZEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3772592913B99400CF9E8B /* USDZEntity.swift */; };
+		CE37725C2913B99400CF9E8B /* LoadUSDZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37725A2913B99400CF9E8B /* LoadUSDZ.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,9 +46,6 @@
 		CE07AC9C2848767F00B08D71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE07AC9E2848767F00B08D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE07ACA5284877B600B08D71 /* ARUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARUtilities.swift; sourceTree = "<group>"; };
-		CE07ACA7284877B600B08D71 /* USDZEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USDZEntity.swift; sourceTree = "<group>"; };
-		CE07ACA9284877B600B08D71 /* LoadUSDZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadUSDZ.swift; sourceTree = "<group>"; };
-		CE07ACAA284877B600B08D71 /* AR3DModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AR3DModel.swift; sourceTree = "<group>"; };
 		CE07ACAD284877B600B08D71 /* ARLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARLoadingView.swift; sourceTree = "<group>"; };
 		CE07ACAE284877B600B08D71 /* PlanDetectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanDetectionView.swift; sourceTree = "<group>"; };
 		CE07ACAF284877B600B08D71 /* CameraButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraButtonView.swift; sourceTree = "<group>"; };
@@ -61,12 +56,13 @@
 		CE07ACB5284877B600B08D71 /* RealityViewController+ARSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealityViewController+ARSession.swift"; sourceTree = "<group>"; };
 		CE07ACB6284877B600B08D71 /* ARView+MetalRecordable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARView+MetalRecordable.swift"; sourceTree = "<group>"; };
 		CE07ACB7284877B600B08D71 /* RealityViewController+RecordAR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealityViewController+RecordAR.swift"; sourceTree = "<group>"; };
-		CE07ACB9284877B600B08D71 /* ARCoachingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCoachingOverlay.swift; sourceTree = "<group>"; };
 		CE07ACBB284877B600B08D71 /* ARResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARResultController.swift; sourceTree = "<group>"; };
 		CE07ACDD2848791400B08D71 /* find_plane.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = find_plane.json; sourceTree = "<group>"; };
 		CE07ACDE2848791400B08D71 /* rotate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rotate.json; sourceTree = "<group>"; };
 		CE07ACDF2848791400B08D71 /* ar_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ar_loading.json; sourceTree = "<group>"; };
 		CE07ACE328487A7E00B08D71 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
+		CE3772592913B99400CF9E8B /* USDZEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USDZEntity.swift; sourceTree = "<group>"; };
+		CE37725A2913B99400CF9E8B /* LoadUSDZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadUSDZ.swift; sourceTree = "<group>"; };
 		CEB8C22A285CB15E00920F90 /* RealityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealityKit.framework; path = System/Library/Frameworks/RealityKit.framework; sourceTree = SDKROOT; };
 		CEB8C22B285CB15E00920F90 /* RealityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealityFoundation.framework; path = System/Library/Frameworks/RealityFoundation.framework; sourceTree = SDKROOT; };
 		CEB8C22E285CB16B00920F90 /* Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Combine.framework; path = System/Library/Frameworks/Combine.framework; sourceTree = SDKROOT; };
@@ -136,12 +132,10 @@
 		CE07ACA42848777C00B08D71 /* Reality */ = {
 			isa = PBXGroup;
 			children = (
-				CE07ACB8284877B600B08D71 /* ARCoachingOverlay */,
 				CE07ACA5284877B600B08D71 /* ARUtilities.swift */,
 				CE07ACBA284877B600B08D71 /* CaptureResult */,
 				CE07ACA6284877B600B08D71 /* LoadService */,
 				CE07ACB2284877B600B08D71 /* RealityKit */,
-				CE07ACC2284877B600B08D71 /* Router */,
 				CE07ACAC284877B600B08D71 /* UI */,
 				CE07ACB1284877B600B08D71 /* UserDefaults+Extension.swift */,
 			);
@@ -151,9 +145,8 @@
 		CE07ACA6284877B600B08D71 /* LoadService */ = {
 			isa = PBXGroup;
 			children = (
-				CE07ACA7284877B600B08D71 /* USDZEntity.swift */,
-				CE07ACA9284877B600B08D71 /* LoadUSDZ.swift */,
-				CE07ACAA284877B600B08D71 /* AR3DModel.swift */,
+				CE37725A2913B99400CF9E8B /* LoadUSDZ.swift */,
+				CE3772592913B99400CF9E8B /* USDZEntity.swift */,
 			);
 			path = LoadService;
 			sourceTree = "<group>";
@@ -181,27 +174,12 @@
 			path = RealityKit;
 			sourceTree = "<group>";
 		};
-		CE07ACB8284877B600B08D71 /* ARCoachingOverlay */ = {
-			isa = PBXGroup;
-			children = (
-				CE07ACB9284877B600B08D71 /* ARCoachingOverlay.swift */,
-			);
-			path = ARCoachingOverlay;
-			sourceTree = "<group>";
-		};
 		CE07ACBA284877B600B08D71 /* CaptureResult */ = {
 			isa = PBXGroup;
 			children = (
 				CE07ACBB284877B600B08D71 /* ARResultController.swift */,
 			);
 			path = CaptureResult;
-			sourceTree = "<group>";
-		};
-		CE07ACC2284877B600B08D71 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		CE07ACDC2848790D00B08D71 /* Resource */ = {
@@ -240,7 +218,7 @@
 				CE07AC892848767E00B08D71 /* Sources */,
 				CE07AC8A2848767E00B08D71 /* Frameworks */,
 				CE07AC8B2848767E00B08D71 /* Resources */,
-				AE7BBAAD16B0391C360CA062 /* [CP] Embed Pods Frameworks */,
+				D1AE2BEFB0C73E627B45D49D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -324,7 +302,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AE7BBAAD16B0391C360CA062 /* [CP] Embed Pods Frameworks */ = {
+		D1AE2BEFB0C73E627B45D49D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -359,14 +337,12 @@
 				CE07ACD3284877B700B08D71 /* RealityViewController+RecordAR.swift in Sources */,
 				CE07ACD1284877B700B08D71 /* RealityViewController+ARSession.swift in Sources */,
 				CE07ACD2284877B700B08D71 /* ARView+MetalRecordable.swift in Sources */,
+				CE37725B2913B99400CF9E8B /* USDZEntity.swift in Sources */,
 				CE07ACCD284877B700B08D71 /* RotateTipView.swift in Sources */,
 				CE07ACCF284877B700B08D71 /* RealityViewController.swift in Sources */,
-				CE07ACC8284877B700B08D71 /* AR3DModel.swift in Sources */,
 				CE07ACCC284877B700B08D71 /* CameraButtonView.swift in Sources */,
-				CE07ACC7284877B700B08D71 /* LoadUSDZ.swift in Sources */,
+				CE37725C2913B99400CF9E8B /* LoadUSDZ.swift in Sources */,
 				CE07ACD0284877B700B08D71 /* ARView+SelfSceneRecordable.swift in Sources */,
-				CE07ACC5284877B700B08D71 /* USDZEntity.swift in Sources */,
-				CE07ACD4284877B700B08D71 /* ARCoachingOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +501,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AR/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Use Photo Library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -550,7 +527,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wuyi.AR;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wuyi.AR2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -577,6 +554,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AR/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Use Photo Library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -602,7 +580,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wuyi.AR;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wuyi.AR2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

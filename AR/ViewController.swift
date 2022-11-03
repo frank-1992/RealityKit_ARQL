@@ -12,12 +12,12 @@ class ViewController: UIViewController {
     
     private lazy var enterButton: UIButton = {
         let button = UIButton()
-        button.setTitle("R-Space", for: .normal)
-        button.setTitleColor(.red, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.layer.cornerRadius = 6
-        button.layer.borderColor = UIColor.green.cgColor
-        button.layer.borderWidth = 1
+        button.setTitle("RealityKit", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.layer.cornerRadius = 8
+        button.layer.masksToBounds = true
+        button.backgroundColor = UIColor.systemRed
         button.addTarget(self, action: #selector(showARController), for: .touchUpInside)
         return button
     }()

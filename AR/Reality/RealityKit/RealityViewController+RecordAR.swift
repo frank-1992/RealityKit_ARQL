@@ -25,7 +25,7 @@ public extension RealityViewController {
         pictureButton.snp.makeConstraints { make in
             make.centerY.equalTo(videoButton)
             make.left.equalTo(videoButton.snp.right).offset(32)
-            make.size.equalTo(CGSize(width: 32, height: 48))
+            make.size.equalTo(CGSize(width: 48, height: 48))
         }
 
         let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
@@ -45,8 +45,8 @@ public extension RealityViewController {
     @objc
     func switchPictureMode() {
         UIView.animate(withDuration: 0.25) {
-            self.pictureButton.transform = CGAffineTransform(translationX: -72, y: 0)
-            self.videoButton.transform = CGAffineTransform(translationX: -72, y: 0)
+            self.pictureButton.transform = CGAffineTransform(translationX: -80, y: 0)
+            self.videoButton.transform = CGAffineTransform(translationX: -80, y: 0)
             self.cameraTabView.currentCameraMode = .picture
         } completion: { _ in
             self.pictureButton.isSelected = true

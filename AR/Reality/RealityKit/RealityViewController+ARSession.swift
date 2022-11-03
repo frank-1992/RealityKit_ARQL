@@ -9,64 +9,69 @@
 import ARKit
 import RealityKit
 
-
 // MARK: - ARSessionDelegate
 @available(iOS 13.0, *)
 extension RealityViewController: ARSessionDelegate {
-    public func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-        for anchor in anchors {
-            let location = arView.center
-            guard isPlacedOnPlane == false,
-                  let planeAnchor = anchor as? ARPlaneAnchor,
-                  let usdzEntity = usdzEntity else { return }
-            if let rayCast = arView.raycast(from: location, allowing: .estimatedPlane, alignment: .any).first, let plane = rayCast.anchor as? ARPlaneAnchor {
-                usdzEntity.position = rayCast.worldTransform.translation
-                currentUSDZPosition = rayCast.worldTransform.translation
-                arView.scene.addAnchor(usdzEntity)
-                usdzEntity.startAnimation()
-                isPlacedOnPlane = true
-                switch planeAnchor.alignment {
-                case .vertical:
-                    currentAlignment = .usdzVertical
-                    previousVerticalPlane = plane
-                case .horizontal:
-                    currentAlignment = .usdzHorizontal
-                    initHorizontalOrientation = rayCast.worldTransform.orientation
-                    previousHorizontalPlane = plane
-                default:
-                    break
-                }
-                previousPlane = plane
-                addSoundShort()
+    public func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        switch camera.trackingState {
+        case .limited(.initializing):
+            if !isDownloading && isPlacedOnPlane {
+                planDetectionView.animationHidden = false
+            }
+        case .limited(.excessiveMotion):
+            if !isDownloading && isPlacedOnPlane {
+                planDetectionView.animationHidden = false
+            }
+        case .limited(.insufficientFeatures):
+            if !isDownloading && isPlacedOnPlane {
+                planDetectionView.animationHidden = false
+            }
+        case .limited(.relocalizing):
+            if !isDownloading && isPlacedOnPlane {
+                planDetectionView.animationHidden = false
+            }
+        case .limited(_):
+            if !isDownloading && isPlacedOnPlane {
+                planDetectionView.animationHidden = false
+            }
+        case .notAvailable:
+            if !isDownloading && isPlacedOnPlane {
+                planDetectionView.animationHidden = false
+            }
+        case .normal:
+            print("arCamera: normal")
+            if !planDetectionView.animationHidden && isPlacedOnPlane {
+                planDetectionView.animationHidden = true
             }
         }
     }
     
     public func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-        for anchor in anchors {
-            let location = arView.center
-            guard isPlacedOnPlane == false,
-                  let planeAnchor = anchor as? ARPlaneAnchor,
-                  let usdzEntity = usdzEntity else { return }
-            if let rayCast = arView.raycast(from: location, allowing: .estimatedPlane, alignment: .any).first, let plane = rayCast.anchor as? ARPlaneAnchor {
-                usdzEntity.position = rayCast.worldTransform.translation
-                currentUSDZPosition = rayCast.worldTransform.translation
-                arView.scene.addAnchor(usdzEntity)
+        DispatchQueue.main.async {
+            for anchor in anchors {
+                let location = self.arView.center
+                guard self.isPlacedOnPlane == false,
+                      let planeAnchor = anchor as? ARPlaneAnchor,
+                      let usdzEntity = self.usdzEntity else { return }
+                guard let position = self.arView.unproject(location, ontoPlane: planeAnchor.transform) else { return }
+                usdzEntity.position = position
+                self.arView.scene.addAnchor(usdzEntity)
                 usdzEntity.startAnimation()
-                isPlacedOnPlane = true
+                self.planDetectionView.animationHidden = true
+                self.isPlacedOnPlane = true
                 switch planeAnchor.alignment {
                 case .vertical:
-                    currentAlignment = .usdzVertical
-                    previousVerticalPlane = plane
+                    self.currentAlignment = .usdzVertical
+                    self.previousVerticalPlane = planeAnchor
                 case .horizontal:
-                    currentAlignment = .usdzHorizontal
-                    initHorizontalOrientation = rayCast.worldTransform.orientation
-                    previousHorizontalPlane = plane
+                    self.currentAlignment = .usdzHorizontal
+                    self.initHorizontalOrientation = planeAnchor.transform.orientation
+                    self.previousHorizontalPlane = planeAnchor
                 default:
                     break
                 }
-                previousPlane = plane
-                addSoundShort()
+                self.previousPlane = planeAnchor
+                self.addSoundShort()
             }
         }
     }
@@ -79,7 +84,7 @@ extension RealityViewController: ARSessionDelegate {
             usdzEntity.shadowDistance = rayCast.distance
         }
     }
-
+    
     public func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {
         return true
     }

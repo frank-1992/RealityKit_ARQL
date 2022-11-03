@@ -5,8 +5,8 @@
 
 import Foundation
 import RealityKit
-import Combine
 import SCNRecorder
+import Combine
 
 private var cancellableKey: UInt8 = 0
 
@@ -40,7 +40,6 @@ extension ARView: SelfSceneRecordable {
       ) { [weak sceneRecorder] _ in
         sceneRecorder?.render()
       }
-    }
-    catch { assertionFailure("\(error)") }
+    } catch { assertionFailure("\(error)") }
   }
 }

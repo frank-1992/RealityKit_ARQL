@@ -8,5 +8,6 @@ target 'AR' do
   # Pods for AR
   pod 'SnapKit'
   pod 'lottie-ios'
-  pod 'SCNRecorder'
+#  pod 'SCNRecorder'
+  pod 'SCNRecorder' , :git => 'https://github.com/gorastudio-ceo/SCNRecorder.git' , :tag => '2.8.1'
 end
