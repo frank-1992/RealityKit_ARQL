@@ -12,7 +12,7 @@ Tip: gif loading is slow, please be patient
 3. add light and horizontal shadow(vertical has some problems right now)
 4. add pan, scale, rotate gestures, you can use them control the model
 6. take photos and videos
-7. two fingers move up can float the model
+7. two fingers move up can float the model(this function has been removed)
 
 Download this project and run 'Pod install', then you can enjoy it
 
