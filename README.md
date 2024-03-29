@@ -6,6 +6,7 @@ Tip: gif loading is slow, please be patient
 
 ![](https://github.com/frank-1992/realitykit_arql/blob/master/IMG_6970.GIF)
 ![](https://github.com/frank-1992/realitykit_arql/blob/master/IMG_6971.GIF)
+![](https://github.com/frank-1992/RealityKit_ARQL/blob/master/point_pin.gif)
 
 # Functions:
 1. detect plane then place the model on the plane
