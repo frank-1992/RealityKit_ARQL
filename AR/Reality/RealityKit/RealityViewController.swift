@@ -168,7 +168,7 @@ public final class RealityViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupARView()
-        guard let modelURL = Bundle.main.url(forResource: "hd6_2k", withExtension: "usdz", subdirectory: "Models.scnassets") else {
+        guard let modelURL = Bundle.main.url(forResource: "提壶舞", withExtension: "usdz", subdirectory: "Models.scnassets") else {
             fatalError("can't find virtual object")
         }
         loadUSDZFile(with: modelURL)
